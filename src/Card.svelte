@@ -1,5 +1,11 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   export let id, name, lastName;
+
+  const dispatch = createEventDispatcher();
+  const baseUrl = "https://hr.oat.taocloud.org/v1/";
+
+  const viewUser = () => dispatch("viewuser", id);
 </script>
 
 <article class="contact-card my">
@@ -17,9 +23,13 @@
 
   <div class="email">
     <slot>
-      <span class="missing">id: {id}</span>
+      <span class="missing">Id: {id}</span>
     </slot>
   </div>
+
+  <button class="btn-success btn-sm btn" on:click={viewUser(id)}
+    >See more...</button
+  >
 </article>
 
 <style>
